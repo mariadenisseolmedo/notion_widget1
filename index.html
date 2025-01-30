@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Widget</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .widget-container {
+            text-align: center;
+        }
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="widget-container">
+        <h2>Widget 1</h2>
+        <div class="circle" id="numberDisplay">2037</div>
+        <input type="number" id="numberInput" placeholder="Enter new number">
+        <button onclick="updateNumber()">Update</button>
+    </div>
+
+    <script>
+        // Load saved number from localStorage
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedNumber = localStorage.getItem("widgetNumber");
+            if (savedNumber) {
+                document.getElementById("numberDisplay").innerText = savedNumber;
+            }
+        });
+
+        function updateNumber() {
+            let newNumber = document.getElementById("numberInput").value;
+            if (newNumber.trim() !== "") {
+                document.getElementById("numberDisplay").innerText = newNumber;
+                localStorage.setItem("widgetNumber", newNumber); // Save in localStorage
+            }
+        }
+    </script>
+
+</body>
+</html>
