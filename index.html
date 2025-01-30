@@ -13,7 +13,7 @@
             height: 100vh;
             background-color: white;
             color: black;
-            font-family: Arial, sans-serif;
+            font-family: Times New Roman, sans-serif;
         }
         .widget-container {
             text-align: center;
@@ -21,30 +21,41 @@
         .circle {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
-            background-color: black;
+            border-radius: 30%;
+            background-color: lightgrey;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 50px;
             font-weight: bold;
             margin-top: 10px;
+            margin-left: 43px
         }
         input {
-            padding: 5px;
+            padding: 1px;
             font-size: 16px;
             margin-top: 10px;
             text-align: center;
+            border: none;
+            background-color: white
         }
+
+.button {
+            font-family: Times New Roman;
+            background-color: lightgrey;
+            width: 60px;
+            height: 25px;
+            font-size: 16px;
+            border: none;
     </style>
 </head>
 <body>
 
     <div class="widget-container">
-        <h2>Savings</h2>
+        <h2>Savings (USD)</h2>
         <div class="circle" id="numberDisplay">2037</div>
         <input type="number" id="numberInput" placeholder="Enter new number">
-        <button onclick="updateNumber()">Update</button>
+        <button type= "submit" class= "button" onclick="updateNumber()">$$$</button>
     </div>
 
     <script>
