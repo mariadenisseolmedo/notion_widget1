@@ -115,8 +115,17 @@
                     localStorage.setItem("savedDate", formattedDate);
     
                     numberInput.value = ""; // Clear input after submission
-                }
             });
+            // Load saved values if they exist
+            const savedNumber = localStorage.getItem("savedNumber");
+            const savedDate = localStorage.getItem("savedDate");
+            if (savedNumber) {
+                displayNumber.textContent = savedNumber;
+            }
+            if (savedDate) {
+                displayDate.textContent = "Last updated: " + savedDate;
+            }
+        });
     </script>
 
 </body>
