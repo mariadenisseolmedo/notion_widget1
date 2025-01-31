@@ -47,13 +47,21 @@
             height: 25px;
             font-size: 16px;
             border: none;
+        .date {
+            font-size: 14px;
+            margin-top: 5px;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
     <div class="widget-container">
         <h2>Savings (USD)</h2>
-        <div class="circle" id="numberDisplay">2037</div>
+        <div class="circle">
+            <div id="numberDisplay">2037</div>
+             <div id="display-date" class="date">Last updated: --</div>
+        </div>
         <input type="number" id="numberInput" placeholder="Enter new number">
         <button type= "submit" class= "button" onclick="updateNumber()">$$$</button>
     </div>
@@ -74,6 +82,48 @@
                 localStorage.setItem("widgetNumber", newNumber); // Save in localStorage
             }
         }
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const numberInput = document.querySelector(".number-input");
+            const displayNumber = document.getElementById("display-number");
+            const displayDate = document.getElementById("display-date");
+    
+            // Function to update the number and store the date
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent page reload
+    
+                const newNumber = numberInput.value.trim();
+                if (!isNaN(newNumber) && newNumber !== "") {
+                    displayNumber.textContent = newNumber;
+                    
+                    // Get current date and format it
+                    const now = new Date();
+                    const formattedDate = now.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    });
+    
+                    displayDate.textContent = "Last updated: " + formattedDate;
+    
+                    // Store the values in local storage so they persist
+                    localStorage.setItem("savedNumber", newNumber);
+                    localStorage.setItem("savedDate", formattedDate);
+    
+                    numberInput.value = ""; // Clear input after submission
+                }
+            });
+    
+            // Load saved values if they exist
+            const savedNumber = localStorage.getItem("savedNumber");
+            const savedDate = localStorage.getItem("savedDate");
+            if (savedNumber) {
+                displayNumber.textContent = savedNumber;
+            }
+            if (savedDate) {
+                displayDate.textContent = "Last updated: " + savedDate;
+            }
+        });
     </script>
 
 </body>
